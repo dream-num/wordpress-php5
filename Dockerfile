@@ -1,18 +1,7 @@
 FROM php:5.3-apache
 
-# apt-get换源
-# RUN mv /etc/apt/sources.list /etc/apt/sources.list.bak && \
-# 	echo "deb http://mirrors.163.com/debian/ stretch main non-free contrib" >/etc/apt/sources.list && \
-# 	echo "deb http://mirrors.163.com/debian/ stretch-updates main non-free contrib" >>/etc/apt/sources.list && \
-# 	echo "deb http://mirrors.163.com/debian/ stretch-backports main non-free contrib" >>/etc/apt/sources.list && \
-# 	echo "deb-src http://mirrors.163.com/debian/ stretch main non-free contrib" >>/etc/apt/sources.list && \
-# 	echo "deb-src http://mirrors.163.com/debian/ stretch-updates main non-free contrib" >>/etc/apt/sources.list && \
-# 	echo "deb-src http://mirrors.163.com/debian/ stretch-backports main non-free contrib" >>/etc/apt/sources.list && \
-# 	echo "deb http://mirrors.163.com/debian-security/ stretch/updates main non-free contrib" >>/etc/apt/sources.list && \
-# 	echo "deb-src http://mirrors.163.com/debian-security/ stretch/updates main non-free contrib" >>/etc/apt/sources.list
-# # W: GPG error: http://mirrors.163.com stretch-updates InRelease: The following signatures couldn't be verified because the public key is not available: NO_PUBKEY 7638D0442B90D010 NO_PUBKEY 04EE7237B7D453EC
-# RUN dpkg --force-depends -P debian-archive-keyring && \
-# 	echo 'Yes, do as I say!' | apt --fix-broken install
+RUN apt-get install debian-keyring debian-archive-keyring && \
+	apt-key update
 
 # persistent dependencies
 RUN set -eux; \
